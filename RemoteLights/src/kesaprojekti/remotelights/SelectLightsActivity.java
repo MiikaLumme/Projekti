@@ -1,5 +1,8 @@
 package kesaprojekti.remotelights;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,15 +12,14 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
 	   
     private Button            exitButton;
     private Spinner            roomSpinner;
     private Spinner            lightSpinner;
-    ArrayAdapter<String>      roomArray;
-    ArrayAdapter<String>    lightArrayLR;        // NEEDS TO BE CHANGED
+    private ArrayList<String>      roomArray;
+    private ArrayList<String>    lightArray;        // NEEDS TO BE CHANGED
     ArrayAdapter<String>    lightArrayBR;
    
     @Override
@@ -25,26 +27,41 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_lights);
        
+        //zone
         roomSpinner =     (Spinner)findViewById(R.id.roomSpinner);
         roomSpinner.setOnItemSelectedListener(this);
+        
+        //gets the zonenames, sets them into spinner
+        try {
+        	PullParserHandler	parser	= new PullParserHandler();
+			roomArray = parser.parse(getAssets().open("settings.xml"), "zonename");
+			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, roomArray);
+			roomSpinner.setAdapter(adapter);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
         lightSpinner =     (Spinner)findViewById(R.id.lightSpinner);
         lightSpinner.setOnItemSelectedListener(this);
        
         //Rooms
-        roomArray =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
-        roomArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        roomSpinner.setAdapter(roomArray);
-        roomArray.add("Living Room");
-        roomArray.add("Bedroom");
-        roomArray.setNotifyOnChange(true);
+//        roomArray =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        roomArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        roomSpinner.setAdapter(roomArray);
+//        roomArray.add("Living Room");
+//        roomArray.add("Bedroom");
+//        roomArray.setNotifyOnChange(true);
        
         //Lights
-        lightArrayLR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
-        lightArrayLR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lightArrayBR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
-        lightArrayBR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lightSpinner.setAdapter(lightArrayBR);
-       
+//        lightArrayLR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        lightArrayLR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        lightArrayBR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        lightArrayBR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        lightSpinner.setAdapter(lightArrayBR);
+//       
         //Exit Button
         exitButton = (Button)findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
@@ -54,8 +71,21 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
             long arg3) {
        
-        String item =    arg0.getItemAtPosition(arg2).toString();
-        Toast.makeText(this, item, Toast.LENGTH_LONG).show();        // Test purposes only. Remove at end.
+    	String item =    arg0.getItemAtPosition(arg2).toString();
+//        Toast.makeText(this, item, Toast.LENGTH_LONG).show();        // Test purposes only. Remove at end.
+    
+        try {
+        	PullParserHandler	parser	= new PullParserHandler();
+			lightArray = parser.parse(getAssets().open("settings.xml"), item);
+			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
+			lightSpinner.setAdapter(adapter);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
+    
+    
     }
 
     @Override

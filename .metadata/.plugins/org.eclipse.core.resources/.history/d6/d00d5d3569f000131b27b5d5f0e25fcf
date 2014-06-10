@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devconfig>
+    <zone>
+        <name>Living Room</name>
+        <abbreviation>LR</abbreviation>
+        <targets>
+            <target>
+                <name>Ceiling Lamp 1</name>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+            </target>
+            <address>14</address>
+            <target>
+                <name>Ceiling Lamp 2</name>
+                <abbreviation>CL2</abbreviation>
+                <type>OnOff</type>
+                <address>12</address>
+            </target>
+        </targets>
+    </zone>
+    <zone>
+        <name>Kitchen</name>
+        <abbreviation>KI</abbreviation>
+        <targets>
+            <target>
+                <name>Ceiling Lamp 1</name>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+                <address>33</address>
+            </target>
+            <target>
+                <name>Ceiling Lamp 2
+                </name>
+                <abbreviation> CL2</abbreviation>
+                <type>OnOff</type>
+                <address>34</address>
+            </target>
+        </targets>
+    </zone>
+</devconfig>
