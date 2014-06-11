@@ -16,12 +16,6 @@
                 <type>OnOff</type>
                 <address>12</address>
             </target>
-            <target>
-                <targetname>Window Lamp 1</targetname>
-                <abbreviation>WL2</abbreviation>
-                <type>OnOff</type>
-                <address>12</address>
-            </target>
         </targets>
     </zone>
     <zone>

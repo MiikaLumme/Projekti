@@ -8,17 +8,11 @@
                 <targetname>Ceiling Lamp 1</targetname>
                 <abbreviation>CL1</abbreviation>
                 <type>OnOff</type>
-                <address>14</address>
             </target>
+            <address>14</address>
             <target>
                 <targetname>Ceiling Lamp 2</targetname>
                 <abbreviation>CL2</abbreviation>
-                <type>OnOff</type>
-                <address>12</address>
-            </target>
-            <target>
-                <targetname>Window Lamp 1</targetname>
-                <abbreviation>WL2</abbreviation>
                 <type>OnOff</type>
                 <address>12</address>
             </target>

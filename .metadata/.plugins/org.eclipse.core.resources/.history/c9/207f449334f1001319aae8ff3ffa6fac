@@ -49,7 +49,21 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         lightSpinner =     (Spinner)findViewById(R.id.lightSpinner);
         lightSpinner.setOnItemSelectedListener(this);
        
-      
+        //Rooms
+//        roomArray =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        roomArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        roomSpinner.setAdapter(roomArray);
+//        roomArray.add("Living Room");
+//        roomArray.add("Bedroom");
+//        roomArray.setNotifyOnChange(true);
+       
+        //Lights
+//        lightArrayLR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        lightArrayLR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        lightArrayBR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        lightArrayBR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        lightSpinner.setAdapter(lightArrayBR);
+//       
         //Exit Button
         exitButton = (Button)findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
@@ -77,6 +91,10 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
          
          }
     	
+    	
+    	
+    
+    
     }
 
     @Override

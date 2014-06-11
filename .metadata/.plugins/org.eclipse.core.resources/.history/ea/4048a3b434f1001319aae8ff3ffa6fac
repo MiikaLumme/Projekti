@@ -49,7 +49,8 @@ public class PullParserHandler {
 						Log.v("zone", text);		// for testing purposes
 						names.add(text);
 					}
-					//targetnames in given zone
+					//currently takes the names of all targets, needs to be changed so that it only picks
+					//the targetnames for the chosen zone
 					if (tagname.equalsIgnoreCase("targetname") && tag != 0)	{
 						Log.v("target", text);		// for testing purposes
 						names.add(text);

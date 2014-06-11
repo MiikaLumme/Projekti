@@ -9,12 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
+public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener, OnItemClickListener {
 	   
     private Button            exitButton;
     private Spinner            roomSpinner;
@@ -30,7 +31,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
         //zone
         roomSpinner =     (Spinner)findViewById(R.id.roomSpinner);
-        roomSpinner.setOnItemSelectedListener(this);
+        roomSpinner.setOnItemClickListener(this);
         
         //gets the zonenames, sets them into spinner
         try {
@@ -38,7 +39,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 			roomArray = parser.parse(getAssets().open("settings.xml"), "zonename");
 			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, roomArray);
 			roomSpinner.setAdapter(adapter);
-			adapter.notifyDataSetChanged();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -49,34 +49,56 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         lightSpinner =     (Spinner)findViewById(R.id.lightSpinner);
         lightSpinner.setOnItemSelectedListener(this);
        
-      
+        //Rooms
+//        roomArray =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        roomArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        roomSpinner.setAdapter(roomArray);
+//        roomArray.add("Living Room");
+//        roomArray.add("Bedroom");
+//        roomArray.setNotifyOnChange(true);
+       
+        //Lights
+//        lightArrayLR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        lightArrayLR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        lightArrayBR = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+//        lightArrayBR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        lightSpinner.setAdapter(lightArrayBR);
+//       
         //Exit Button
         exitButton = (Button)findViewById(R.id.exitButton);
         exitButton.setOnClickListener(this);
     }
 
+    
+    
+    @Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+    	
+     	String item =    arg0.getItemAtPosition(arg2).toString();
+//      Toast.makeText(this, item, Toast.LENGTH_LONG).show();        // Test purposes only. Remove at end.
+  	Log.v("onSelected", item); 		//for testing
+      try {
+      	PullParserHandler	parser	= new PullParserHandler();
+			lightArray = parser.parse(getAssets().open("settings.xml"), item);
+			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
+			lightSpinner.setAdapter(adapter);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+  
+  
+  
+		
+		
+	}
+    
+    
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
             long arg3) {
        
-    	 switch (arg0.getId()) {
-    	 case R.id.roomSpinner:
-    		 String item =    arg0.getItemAtPosition(arg2).toString();
-//           Toast.makeText(this, item, Toast.LENGTH_LONG).show();        // Test purposes only. Remove at end.
-       	Log.v("onSelected", item); 		//for testing
-           try {
-           	PullParserHandler	parser	= new PullParserHandler();
-   			lightArray = parser.parse(getAssets().open("settings.xml"), item);
-   			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
-   			lightSpinner.setAdapter(adapter);
-   		} catch (IOException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		}
-       
-         
-         }
-    	
+   
     }
 
     @Override
@@ -99,4 +121,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         }
        
     }
+
+	
 }
