@@ -9,29 +9,41 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
 	public static final String PREFS_NAME = "PrefsFile";
 
 	//ha
     private Button         	   	exitButton;
+    private Button				lightButton;
+    private ToggleButton		toggleButton;
     private Spinner            	roomSpinner;
     private Spinner            	lightSpinner;
     private ArrayList<String>  	roomArray;
-    private ArrayList<String>  	lightArray;        
+    private ArrayList<String>  	lightArray;
+    private ArrayList<Boolean>	buttonArray;
+    private LinearLayout		LL;
     SharedPreferences			sharedPrefs;		
     SharedPreferences.Editor	editor;
+    
+    private static final int exitId = 50;
    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_lights);
        
+        //Linear Layout
+        LL = (LinearLayout)findViewById(R.id.LinearLayout2);
+        
         //zone
         roomSpinner =     (Spinner)findViewById(R.id.roomSpinner);
         roomSpinner.setOnItemSelectedListener(this);
@@ -48,8 +60,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        
+      
         lightSpinner =     (Spinner)findViewById(R.id.lightSpinner);
         lightSpinner.setOnItemSelectedListener(this);
        
@@ -58,20 +69,28 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         roomSpinner.setSelection(sharedPrefs.getInt("roomspinner", 0));
         //sets persistent pos after roomspinner persisted pos has been set
         lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
-        
-        
+  
+//        //Toggle Button
+//        ToggleButton toggleButton = new ToggleButton(this);
+//        toggleButton.setTextOn("ON");
+//        toggleButton.setTextOff("OFF");
+//        toggleButton.setChecked(true);
+//        toggleButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+//        LL.addView(toggleButton);
         
         //Exit Button
-        exitButton = (Button)findViewById(R.id.exitButton);
+        Button exitButton = new Button(this);
+        exitButton.setText("Exit");
+        exitButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        exitButton.setId(exitId);
         exitButton.setOnClickListener(this);
+        LL.addView(exitButton);
     }
-    
+ 
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
             long arg3) {
-    	
-   	
-    	
+
     	 switch (arg0.getId()) {
     	 case R.id.roomSpinner:
     		 //sets spinner pos to shared prefs (persisting spinner pos)
@@ -93,24 +112,31 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
    			// TODO Auto-generated catch block
    			e.printStackTrace();
    		}
-           
-           
+   
           break; 
           
     	 case R.id.lightSpinner:
-    		 
+    		 	  
+    		PullParserHandler	parser	= new PullParserHandler();
+    	  	LL.removeView(lightButton);  
+    	  	buttonArray = parser.returnButtonType();
+
     		 Log.v("lighstpinner", "works"); //testing...
     		 
     		 //sets spinner pos to shared prefs
     		 sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
     		 editor		= sharedPrefs.edit();
     		 editor.putInt("lightspinner", arg2);
+    		 //LightsButton
+    	        lightButton = new Button(this);
+    	        lightButton.setText("Lights");
+    	        lightButton.setId(5);
+    	        lightButton.setLayoutParams(new LayoutParams (LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    	        LL.addView(lightButton);
     		 
     		 break; 		        
          }
     	 editor.commit();
-    	 
-    	
     }
 
     @Override
@@ -118,23 +144,15 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
     }
 
-   
-   
     @Override
     public void onClick(View arg0) {
         switch (arg0.getId()) {
        
-        case R.id.exitButton:
+        case exitId:
         finish();  
         break;
         }
        
     }
-    
-    
-    
-    
-    
-    
-    
+   
 }

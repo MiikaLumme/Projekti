@@ -12,13 +12,20 @@ import android.util.Log;
 
 public class PullParserHandler {
 	private	ArrayList<String>	names;
+	private ArrayList<Boolean>	buttonType;
 	private	String				text;
 	private	int					tag;
 
 	
 	public PullParserHandler()	{
-		names	= new ArrayList<String>();
-		tag		= 0;
+		names		= new ArrayList<String>();
+		buttonType  = new ArrayList<Boolean>();
+		tag			= 0;
+		
+	}
+	
+	public ArrayList<Boolean> returnButtonType() {
+		return buttonType;
 		
 	}
 		
@@ -54,6 +61,17 @@ public class PullParserHandler {
 						Log.v("target", text);		// for testing purposes
 						names.add(text);
 					}
+					//type of button
+					if (tagname.equalsIgnoreCase("type") && tag !=0) {
+						Log.v("zone", text);
+						if (text.equalsIgnoreCase("onoff")) {
+							buttonType.add(true);
+						}
+						else {
+							buttonType.add(false);
+						}
+					}
+					
 					if (tagname.equalsIgnoreCase("zone"))	{
 						tag = 0;
 					}
