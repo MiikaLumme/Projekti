@@ -1,0 +1,9 @@
+package kesaprojekti.remotelights;
+
+import java.util.ArrayList;
+
+public class PullParserHandler {
+	private	ArrayList<String>	names;
+	private	String				text;
+
+}
