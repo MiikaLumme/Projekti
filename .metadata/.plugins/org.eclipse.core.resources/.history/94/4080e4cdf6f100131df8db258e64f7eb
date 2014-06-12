@@ -18,7 +18,7 @@ import android.widget.Spinner;
 public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
 	public static final String PREFS_NAME = "PrefsFile";
 
-	//ha
+	
     private Button         	   	exitButton;
     private Spinner            	roomSpinner;
     private Spinner            	lightSpinner;
