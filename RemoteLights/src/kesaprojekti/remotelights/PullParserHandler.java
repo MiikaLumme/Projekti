@@ -15,14 +15,6 @@ public class PullParserHandler {
 	private ArrayList<Boolean>	buttonType	= new ArrayList<Boolean>();
 	private	String				text		= "";
 	private	int					tag 		= 0;
-
-	
-//	public PullParserHandler()	{
-//		names		= new ArrayList<String>();
-//		buttonType  = new ArrayList<Boolean>();
-//		tag			= 0;
-//		
-//	}
 	
 	public ArrayList<String> getNames()	{
 		
@@ -59,23 +51,18 @@ public class PullParserHandler {
 				case XmlPullParser.END_TAG:
 					//collects all zonenames
 					if (tagname.equalsIgnoreCase("zonename") && name.equalsIgnoreCase("zonename"))	{
-						Log.v("zone", text);		// for testing purposes
 						names.add(text);
 					}
 					//targetnames in given zone
 					if (tagname.equalsIgnoreCase("targetname") && tag != 0)	{
-						Log.v("target", text);		// for testing purposes
 						names.add(text);
 						
 					}
 					//type of button
 					if (tagname.equalsIgnoreCase("type") && tag !=0) {
-						Log.v("zone", text);
 						if (text.equalsIgnoreCase("onoff")) {
 							buttonType.add(true);
-										
 						
-							Log.v("buttonType", "isOnOff");
 						}
 						else {
 							buttonType.add(false);

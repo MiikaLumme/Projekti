@@ -1,6 +1,11 @@
 package kesaprojekti.remotelights;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -31,10 +36,12 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ArrayList<String>  	lightArray;
     private ArrayList<Boolean>	buttonArray;
     private LinearLayout		LL;
+    private ConnectionHandler	thread;
     SharedPreferences			sharedPrefs;		
     SharedPreferences.Editor	editor;
     
-    private static final int exitId = 50;
+    private static final int exitId	 = 50;
+    private static final int lightId = 5;
    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +77,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         roomSpinner.setSelection(sharedPrefs.getInt("roomspinner", 0));
         //sets persistent pos after roomspinner persisted pos has been set
         lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
-  
-//        //Toggle Button
-//        ToggleButton toggleButton = new ToggleButton(this);
-//        toggleButton.setTextOn("ON");
-//        toggleButton.setTextOff("OFF");
-//        toggleButton.setChecked(true);
-//        toggleButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-//        LL.addView(toggleButton);
-        
+      
         //Exit Button
         Button exitButton = new Button(this);
         exitButton.setText("Exit");
@@ -86,9 +85,12 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         exitButton.setId(exitId);
         exitButton.setOnClickListener(this);
         LL.addView(exitButton);
-        
-        
-        
+   
+    }
+    
+    public void startThread() {
+    	thread = new ConnectionHandler();
+    	thread.start();
     }
  
     @Override
@@ -104,16 +106,13 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 editor.putInt("roomspinner", arg2);
     		 
     		 String item =    arg0.getItemAtPosition(arg2).toString();
-//           Toast.makeText(this, item, Toast.LENGTH_LONG).show();        // Test purposes only. Remove at end.
-    		 Log.v("onSelected", item); 		//for testing
-       	
        	//gets targetnames, set them into spinner
 	           try {
 	        	parser.parse(getAssets().open("settings.xml"), item);
 	   			lightArray = parser.getNames();
 	   			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
 	   			lightSpinner.setAdapter(adapter);
-	   			
+	   			//gets button type
 	   			buttonArray = parser.getButtonType();
 	   		} catch (IOException e) {
 	   			// TODO Auto-generated catch block
@@ -127,40 +126,28 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 //clear old light button
     		 LL.removeView(lightButton);
     		 
-    		 //gets button type
-    		 
-    		 
+    		 //check's the type of button and sets the right button
     		 if (buttonArray.get(arg2)) {
     			 
     			//LightsButton
         	     lightButton = new Button(this);
         	     lightButton.setText("Lights");
-        	     lightButton.setId(5);
+        	     lightButton.setId(lightId);
         	     lightButton.setLayoutParams(new LayoutParams (LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        	     lightButton.setOnClickListener(this);
         	     LL.addView(lightButton);
+        	     
     			 
     		 }
     		 else	{
     			 //other types of button
     		 }
-    	  	 
-    	  
-    	  		
 
-    	  	 
-    	  	 
-    		 
-    	     
-    	     
-    	     
-    	     
-    	     
     		 //sets spinner pos to shared prefs
     		 sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
     		 editor		= sharedPrefs.edit();
     		 editor.putInt("lightspinner", arg2);
-    	     
-    		 
+		 
     		 break; 		        
          }
     	 editor.commit();
@@ -175,8 +162,12 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     public void onClick(View arg0) {
         switch (arg0.getId()) {
        
+        case lightId:
+        startThread();
+        break;
+        	
         case exitId:
-        finish();  
+    //    finish();  
         break;
         }
        
