@@ -11,18 +11,31 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.util.Log;
 
 public class PullParserHandler {
-	private	ArrayList<String>	names;
-	private	String				text;
-	private	int					tag;
+	private	ArrayList<String>	names 		= new ArrayList<String>();
+	private ArrayList<Boolean>	buttonType	= new ArrayList<Boolean>();
+	private	String				text		= "";
+	private	int					tag 		= 0;
 
 	
-	public PullParserHandler()	{
-		names	= new ArrayList<String>();
-		tag		= 0;
+//	public PullParserHandler()	{
+//		names		= new ArrayList<String>();
+//		buttonType  = new ArrayList<Boolean>();
+//		tag			= 0;
+//		
+//	}
+	
+	public ArrayList<String> getNames()	{
 		
+		return names;
 	}
+	
+	public ArrayList<Boolean> getButtonType()	{
 		
-	public ArrayList<String> parse(InputStream is, String name) throws IOException	{
+		return buttonType;
+	}
+	
+	
+	public void parse(InputStream is, String name) throws IOException	{
 		try	{
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			factory.setNamespaceAware(true);
@@ -53,7 +66,22 @@ public class PullParserHandler {
 					if (tagname.equalsIgnoreCase("targetname") && tag != 0)	{
 						Log.v("target", text);		// for testing purposes
 						names.add(text);
+						
 					}
+					//type of button
+					if (tagname.equalsIgnoreCase("type") && tag !=0) {
+						Log.v("zone", text);
+						if (text.equalsIgnoreCase("onoff")) {
+							buttonType.add(true);
+										
+						
+							Log.v("buttonType", "isOnOff");
+						}
+						else {
+							buttonType.add(false);
+						}
+					}
+					
 					if (tagname.equalsIgnoreCase("zone"))	{
 						tag = 0;
 					}
@@ -62,14 +90,15 @@ public class PullParserHandler {
 					break;
 				}
 				eventType = parser.next();
+				
+				
 			}
-			
 			
 		} catch(XmlPullParserException e)	{
 			e.printStackTrace();
 		}
-		return names;
 		
+				
 		
 	}
 	

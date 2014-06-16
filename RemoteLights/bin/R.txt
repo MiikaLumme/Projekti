@@ -257,7 +257,6 @@ int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
 int id edit_query 0x7f050030
 int id end 0x7f050013
-int id exitButton 0x7f050041
 int id expand_activities_button 0x7f050026
 int id expanded_menu 0x7f05002c
 int id home 0x7f050014
