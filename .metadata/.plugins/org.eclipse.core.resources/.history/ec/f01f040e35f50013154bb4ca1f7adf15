@@ -36,7 +36,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ArrayList<String>  	lightArray;
     private ArrayList<Boolean>	buttonArray;
     private LinearLayout		LL;
-    private ConnectionHandler	thread;
     SharedPreferences			sharedPrefs;		
     SharedPreferences.Editor	editor;
     
@@ -86,11 +85,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         exitButton.setOnClickListener(this);
         LL.addView(exitButton);
    
-    }
-    
-    public void startThread() {
-    	thread = new ConnectionHandler();
-    	thread.start();
     }
  
     @Override
@@ -163,11 +157,40 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         switch (arg0.getId()) {
        
         case lightId:
-        startThread();
-        break;
-        	
+        	new Thread(new Runnable() {
+    			
+    			@Override
+    			public void run() {
+    				
+    				String serverName = "KLATL-136-02.edut.local";
+    			    int port = 4444;
+    			    try
+    			      {
+    			         Log.v("Client", "Connecting to " + serverName + " on port " + port);
+    			         Socket client = new Socket(serverName, port);
+    			         Log.v("Client", "Just connected to "
+    			                      + client.getRemoteSocketAddress());
+    			         OutputStream outToServer = client.getOutputStream();
+    			         DataOutputStream out =
+    			                       new DataOutputStream(outToServer);
+
+    			         out.writeUTF("Hello from "
+    			                      + client.getLocalSocketAddress());
+    			         InputStream inFromServer = client.getInputStream();
+    			         DataInputStream in =
+    			                        new DataInputStream(inFromServer);
+    			         Log.v("Client", "Server says " + in.readUTF());
+    			         client.close();
+    			      }catch(IOException e)
+    			      {
+    			         e.printStackTrace();
+    			      }
+    				
+    			}
+    		}).start();
+        
         case exitId:
-    //    finish();  
+        finish();  
         break;
         }
        

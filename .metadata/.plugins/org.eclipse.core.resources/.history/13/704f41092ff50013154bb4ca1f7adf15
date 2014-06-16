@@ -1,11 +1,6 @@
 package kesaprojekti.remotelights;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -36,12 +31,10 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ArrayList<String>  	lightArray;
     private ArrayList<Boolean>	buttonArray;
     private LinearLayout		LL;
-    private ConnectionHandler	thread;
     SharedPreferences			sharedPrefs;		
     SharedPreferences.Editor	editor;
     
-    private static final int exitId	 = 50;
-    private static final int lightId = 5;
+    private static final int exitId = 50;
    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +80,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         LL.addView(exitButton);
    
     }
-    
-    public void startThread() {
-    	thread = new ConnectionHandler();
-    	thread.start();
-    }
  
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
@@ -132,11 +120,9 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     			//LightsButton
         	     lightButton = new Button(this);
         	     lightButton.setText("Lights");
-        	     lightButton.setId(lightId);
+        	     lightButton.setId(5);
         	     lightButton.setLayoutParams(new LayoutParams (LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        	     lightButton.setOnClickListener(this);
         	     LL.addView(lightButton);
-        	     
     			 
     		 }
     		 else	{
@@ -162,12 +148,8 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     public void onClick(View arg0) {
         switch (arg0.getId()) {
        
-        case lightId:
-        startThread();
-        break;
-        	
         case exitId:
-    //    finish();  
+        finish();  
         break;
         }
        

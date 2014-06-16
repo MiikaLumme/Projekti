@@ -163,8 +163,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         switch (arg0.getId()) {
        
         case lightId:
-        startThread();
-        break;
+        startThread();	
         	
         case exitId:
     //    finish();  
