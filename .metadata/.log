@@ -6127,7 +6127,11 @@ Binding(CTRL+SHIFT+\,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+<<<<<<< HEAD
 !SESSION 2014-06-12 12:57:36.798 -----------------------------------------------
+=======
+!SESSION 2014-06-12 13:34:20.415 -----------------------------------------------
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 eclipse.buildId=v22.6.2-1085508
 java.version=1.7.0_25
 java.vendor=Oracle Corporation
@@ -6135,6 +6139,7 @@ BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
 Framework arguments:  -product com.android.ide.eclipse.adt.package.product --launcher.appendVmargs--vm C:\Program Files\Java\jdk1.7.0_25
 Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.android.ide.eclipse.adt.package.product --launcher.appendVmargs--vm C:\Program Files\Java\jdk1.7.0_25
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.core.resources 2 10035 2014-06-12 12:57:46.641
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
 
@@ -8051,6 +8056,24 @@ org.eclipse.core.runtime.CoreException: Plug-in com.android.ide.eclipse.adt was 
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:997)
 	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:138)
 	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:610)
+=======
+!ENTRY org.eclipse.core.resources 2 10035 2014-06-12 13:34:32.338
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2014-06-12 13:34:34.955
+!MESSAGE Unable to load resource file:/Z:/summerProject/SummerProjectGit/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/Z:/summerProject/SummerProjectGit/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/Z:/summerProject/SummerProjectGit/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.getResource(ResourceHandler.java:296)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadResource(ResourceHandler.java:272)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadMostRecentModel(ResourceHandler.java:204)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.loadApplicationModel(E4Application.java:395)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.createE4Workbench(E4Application.java:238)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:581)
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
 	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:567)
 	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
@@ -8067,6 +8090,7 @@ org.eclipse.core.runtime.CoreException: Plug-in com.android.ide.eclipse.adt was 
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+<<<<<<< HEAD
 Caused by: org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter$TerminatingClassNotFoundException: An error occurred while automatically activating bundle com.android.ide.eclipse.adt (2).
 	at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:124)
 	at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:469)
@@ -8194,6 +8218,33 @@ Caused by: java.lang.NullPointerException
 	... 41 more
 
 !ENTRY org.eclipse.egit.ui 2 0 2014-06-12 12:58:08.076
+=======
+Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/Z:/summerProject/SummerProjectGit/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/Z:/summerProject/SummerProjectGit/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; The markup in the document preceding the root element must be well-formed.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(Unknown Source)
+	at org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl.load(XMLLoadImpl.java:175)
+	at org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl.doLoad(XMLResourceImpl.java:253)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1518)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1297)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoad(ResourceSetImpl.java:259)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
+	... 23 more
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-06-12 13:34:52.511
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 !MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
 Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
 The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
@@ -8201,13 +8252,21 @@ this system level configuration. The Git installation location can be configured
 Team > Git > Configuration preference page's 'System Settings' tab.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2014-06-12 12:58:08.078
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2014-06-12 13:34:52.513
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'Z:\'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
 !SESSION 2014-06-12 12:58:55.485 -----------------------------------------------
+=======
+!SESSION 2014-06-13 08:40:03.692 -----------------------------------------------
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 eclipse.buildId=v22.6.2-1085508
 java.version=1.7.0_25
 java.vendor=Oracle Corporation
@@ -8215,7 +8274,11 @@ BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
 Framework arguments:  -product com.android.ide.eclipse.adt.package.product --launcher.appendVmargs--vm C:\Program Files\Java\jdk1.7.0_25
 Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.android.ide.eclipse.adt.package.product --launcher.appendVmargs--vm C:\Program Files\Java\jdk1.7.0_25
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2014-06-12 12:59:04.972
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2014-06-13 08:40:36.947
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 !MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
 Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
 The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
@@ -8223,13 +8286,21 @@ this system level configuration. The Git installation location can be configured
 Team > Git > Configuration preference page's 'System Settings' tab.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2014-06-12 12:59:05.053
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2014-06-13 08:40:36.993
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'Z:\'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
 !SESSION 2014-06-13 09:52:04.077 -----------------------------------------------
+=======
+!SESSION 2014-06-16 08:56:13.982 -----------------------------------------------
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 eclipse.buildId=v22.6.2-1085508
 java.version=1.7.0_25
 java.vendor=Oracle Corporation
@@ -8237,7 +8308,11 @@ BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
 Framework arguments:  -product com.android.ide.eclipse.adt.package.product --launcher.appendVmargs--vm C:\Program Files\Java\jdk1.7.0_25
 Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.android.ide.eclipse.adt.package.product --launcher.appendVmargs--vm C:\Program Files\Java\jdk1.7.0_25
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2014-06-13 09:52:38.520
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2014-06-16 08:56:46.957
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 !MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
 Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
 The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
@@ -8245,12 +8320,17 @@ this system level configuration. The Git installation location can be configured
 Team > Git > Configuration preference page's 'System Settings' tab.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2014-06-13 09:52:38.589
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2014-06-16 08:56:46.959
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'Z:\'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
 !SESSION 2014-06-16 09:15:11.467 -----------------------------------------------
 eclipse.buildId=v22.6.2-1085508
 java.version=1.7.0_25
@@ -8513,3 +8593,5 @@ Binding(CTRL+SHIFT+\,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.wst.sse.ui.structuredTextEditorScope,,,system)
+=======
+>>>>>>> 16d272782dc5572e3b78a84a6a162b93df40f788

@@ -51,7 +51,8 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         //gets the zonenames, sets them into spinner
         try {
         	PullParserHandler	parser	= new PullParserHandler();
-			roomArray = parser.parse(getAssets().open("settings.xml"), "zonename");
+        	parser.parse(getAssets().open("settings.xml"), "zonename");
+			roomArray = parser.getNames();
 			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, roomArray);
 			roomSpinner.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
@@ -85,11 +86,15 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         exitButton.setId(exitId);
         exitButton.setOnClickListener(this);
         LL.addView(exitButton);
+        
+        
+        
     }
  
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
             long arg3) {
+    	PullParserHandler	parser	= new PullParserHandler();
 
     	 switch (arg0.getId()) {
     	 case R.id.roomSpinner:
@@ -100,39 +105,61 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 
     		 String item =    arg0.getItemAtPosition(arg2).toString();
 //           Toast.makeText(this, item, Toast.LENGTH_LONG).show();        // Test purposes only. Remove at end.
-       	Log.v("onSelected", item); 		//for testing
+    		 Log.v("onSelected", item); 		//for testing
        	
        	//gets targetnames, set them into spinner
-           try {
-           	PullParserHandler	parser	= new PullParserHandler();
-   			lightArray = parser.parse(getAssets().open("settings.xml"), item);
-   			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
-   			lightSpinner.setAdapter(adapter);
-   		} catch (IOException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		}
+	           try {
+	        	parser.parse(getAssets().open("settings.xml"), item);
+	   			lightArray = parser.getNames();
+	   			ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
+	   			lightSpinner.setAdapter(adapter);
+	   			
+	   			buttonArray = parser.getButtonType();
+	   		} catch (IOException e) {
+	   			// TODO Auto-generated catch block
+	   			e.printStackTrace();
+	   		}
    
           break; 
           
     	 case R.id.lightSpinner:
     		 	  
-    		PullParserHandler	parser	= new PullParserHandler();
-    	  	LL.removeView(lightButton);  
-    	  	buttonArray = parser.returnButtonType();
-
-    		 Log.v("lighstpinner", "works"); //testing...
+    		 //clear old light button
+    		 LL.removeView(lightButton);
     		 
+    		 //gets button type
+    		 
+    		 
+    		 if (buttonArray.get(arg2)) {
+    			 
+    			//LightsButton
+        	     lightButton = new Button(this);
+        	     lightButton.setText("Lights");
+        	     lightButton.setId(5);
+        	     lightButton.setLayoutParams(new LayoutParams (LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        	     LL.addView(lightButton);
+    			 
+    		 }
+    		 else	{
+    			 //other types of button
+    		 }
+    	  	 
+    	  
+    	  		
+
+    	  	 
+    	  	 
+    		 
+    	     
+    	     
+    	     
+    	     
+    	     
     		 //sets spinner pos to shared prefs
     		 sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
     		 editor		= sharedPrefs.edit();
     		 editor.putInt("lightspinner", arg2);
-    		 //LightsButton
-    	        lightButton = new Button(this);
-    	        lightButton.setText("Lights");
-    	        lightButton.setId(5);
-    	        lightButton.setLayoutParams(new LayoutParams (LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-    	        LL.addView(lightButton);
+    	     
     		 
     		 break; 		        
          }
