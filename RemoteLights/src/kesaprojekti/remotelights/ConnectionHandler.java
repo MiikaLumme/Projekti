@@ -22,6 +22,8 @@ public class ConnectionHandler extends Thread implements Runnable {
 			    int port = 4444;
 			    try
 			      {
+			    	
+			    	
 			         Log.v("Client", "Connecting to " + serverName + " on port " + port);
 			         Socket client = new Socket(serverName, port);
 			         Log.v("Client", "Just connected to "

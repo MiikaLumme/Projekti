@@ -59,7 +59,7 @@ public class PullParserHandler {
 						
 					}
 					//type of button
-					if (tagname.equalsIgnoreCase("type") && tag !=0) {
+					if (tagname.equalsIgnoreCase("type") && tag != 0) {
 						if (text.equalsIgnoreCase("onoff")) {
 							buttonType.add(true);
 						
