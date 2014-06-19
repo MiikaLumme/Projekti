@@ -1071,6 +1071,8 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020057;
     }
     public static final class id {
+        public static final int LLExit=0x7f050042;
+        public static final int LLLights=0x7f050041;
         public static final int LinearLayout1=0x7f05003c;
         public static final int LinearLayout2=0x7f05003e;
         public static final int action_bar=0x7f05001c;

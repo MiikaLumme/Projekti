@@ -31,8 +31,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ArrayList<String>  	roomArray;
     private ArrayList<String>  	lightArray;
     private ArrayList<Boolean>	buttonArray;
-    private LinearLayout		LLLights;
-    private LinearLayout		LLExit;
+    private LinearLayout		LL;
     private ConnectionHandler	thread;
     SharedPreferences			sharedPrefs;		
     SharedPreferences.Editor	editor;
@@ -44,9 +43,10 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_lights);
        
-        //Linear Layout for buttons (any way of doing this without the extra layouts?)
-        LLLights 	= (LinearLayout)findViewById(R.id.LLLights);
-        LLExit		= (LinearLayout)findViewById(R.id.LLExit);
+        
+        
+        //Linear Layout
+        LL = (LinearLayout)findViewById(R.id.LinearLayout2);
         
         //zone
         roomSpinner =     (Spinner)findViewById(R.id.roomSpinner);
@@ -55,7 +55,12 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         //gets the zonenames, sets them into spinner
         
         setSpinner("zonename", roomArray, roomSpinner);
-        	
+        
+//        roomArray = parser.getNames();
+//		ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, roomArray);
+//		roomSpinner.setAdapter(adapter);
+//		adapter.notifyDataSetChanged();
+		
 		//target
         lightSpinner =     (Spinner)findViewById(R.id.lightSpinner);
         lightSpinner.setOnItemSelectedListener(this);
@@ -63,13 +68,14 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         //set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
         sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
         roomSpinner.setSelection(sharedPrefs.getInt("roomspinner", 0));
-     
+        
+        
         //sets persistent pos after roomspinner persisted pos has been set. ISN'T WORKING.
         lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
       
         //Exit Button
         exitButton	=	 makeButton(exitId, EXIT_LBL);
-        LLExit.addView(exitButton);
+        LL.addView(exitButton);
    
     }
     
@@ -86,23 +92,28 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 editor.putInt("roomspinner", arg2);
     		 
     		 String item =    arg0.getItemAtPosition(arg2).toString();
-    		
     		 //gets targetnames, set them into spinner
-    		 setSpinner(item, lightArray, lightSpinner);
-	           		
+	        
+	        PullParserHandler parser = returnParser(item);
+	   		lightArray = parser.getNames();
+	   		ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lightArray);
+	   		lightSpinner.setAdapter(adapter);
+	   		//gets button type
+	   		buttonArray = parser.getButtonType();
+	   		
           break; 
           
     	 case R.id.lightSpinner:
     		 	  
     		 //clear old light button
-    		 LLLights.removeView(lightButton);
+    		 LL.removeView(lightButton);
     		 
     		 //check's the type of button and sets the right button
     		 if (buttonArray.get(arg2)) {
     			 
     			//LightsButton
     			lightButton = makeButton(lightId, LIGHTS_LBL);
-    			LLLights.addView(lightButton);    			 
+    			LL.addView(lightButton);    			 
     		 }
     		 else	{
     			 //other types of button
@@ -162,11 +173,8 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 		ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, a);
 		s.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
-		
-		//gets button type, for second spinner
-		if (item != "zonename")	{
-			buttonArray = parser.getButtonType();			
-		}
+    	
+    	
     }
     
     public void startThread() {

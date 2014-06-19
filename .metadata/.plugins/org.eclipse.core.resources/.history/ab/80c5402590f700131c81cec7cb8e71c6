@@ -44,7 +44,9 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_lights);
        
-        //Linear Layout for buttons (any way of doing this without the extra layouts?)
+        
+        
+        //Linear Layout
         LLLights 	= (LinearLayout)findViewById(R.id.LLLights);
         LLExit		= (LinearLayout)findViewById(R.id.LLExit);
         
