@@ -42,22 +42,4 @@
             </target>
         </targets>
     </zone>
-    <zone>
-        <zonename>Bedroom</zonename>
-        <abbreviation>BR</abbreviation>
-        <targets>
-            <target>
-                <targetname>Bedside lamp 1</targetname>
-                <abbreviation>BL1</abbreviation>
-                <type>OnOff</type>
-                <address>45</address>
-            </target>
-            <target>
-                <targetname>Bedside Lamp 2</targetname>
-                <abbreviation> BL2</abbreviation>
-                <type>OnOff</type>
-                <address>46</address>
-            </target>
-        </targets>
-    </zone>
 </devconfig>
