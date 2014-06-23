@@ -143,6 +143,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
     }
    
+    
     public Button makeButton(int id, String label)	{
     	Button b = new Button(this);
         b.setText(label);

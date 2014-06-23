@@ -36,7 +36,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ConnectionHandler			thread;
     private SharedPreferences			sharedPrefs;		
     private SharedPreferences.Editor	editor;
-    private int 						persInfoTag = 0;				
+    private int 						persInfoTag = -1;				
     
     
    
@@ -88,9 +88,9 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 //gets targetnames, set them into spinner
     		 setSpinner(item, lightArray, lightSpinner);
     		 
-    		 if(persInfoTag == 0)	{
+    		 if(persInfoTag == -1)	{
     			 //sets persistent pos after roomspinner persisted pos has been set. ISN'T WORKING.
-    		     lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
+    		     lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", -1)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
     		     persInfoTag = 1;
     		 }
 	           		
@@ -143,6 +143,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
     }
    
+    
     public Button makeButton(int id, String label)	{
     	Button b = new Button(this);
         b.setText(label);
