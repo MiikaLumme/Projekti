@@ -36,7 +36,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ConnectionHandler			thread;
     private SharedPreferences			sharedPrefs;		
     private SharedPreferences.Editor	editor;
-    private int 						persInfoTag = 0;				
+    private int 						persInfoTag;				
     
     
    
@@ -64,6 +64,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         //set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
         sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
         roomSpinner.setSelection(sharedPrefs.getInt("roomspinner", 0));
+        persInfoTag = 0;
       
         //Exit Button
         exitButton	=	 makeButton(exitId, EXIT_LBL);
@@ -136,7 +137,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 	        break;
         	
         case exitId:
-        	persInfoTag = 0;
 	        finish();  
 	        break;
         }

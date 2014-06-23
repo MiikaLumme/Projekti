@@ -76,6 +76,12 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
             long arg3) {
 
+    	 if(persInfoTag == 0)	{
+			 //sets persistent pos after roomspinner persisted pos has been set. ISN'T WORKING.
+		     lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
+		     persInfoTag = 1;
+		 }
+    	
     	 switch (arg0.getId()) {
     	 case R.id.roomSpinner:
     		 //sets spinner pos to shared prefs (persisting spinner pos)
@@ -88,11 +94,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 //gets targetnames, set them into spinner
     		 setSpinner(item, lightArray, lightSpinner);
     		 
-    		 if(persInfoTag == 0)	{
-    			 //sets persistent pos after roomspinner persisted pos has been set. ISN'T WORKING.
-    		     lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
-    		     persInfoTag = 1;
-    		 }
+    		
 	           		
           break; 
           
