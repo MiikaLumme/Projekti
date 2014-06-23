@@ -64,10 +64,15 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         lightSpinner =     (Spinner)findViewById(R.id.lightSpinner);
         lightSpinner.setOnItemSelectedListener(this);
        
-        //set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
-        sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
-        roomSpinner.setSelection(sharedPrefs.getInt(ROOM_PREF, 0));
         
+        if(persInfoTag == 0)	{
+        	//set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
+            sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
+            roomSpinner.setSelection(sharedPrefs.getInt(ROOM_PREF, 0));
+        }
+        
+        
+      
         //Exit Button
         exitButton	=	 makeButton(exitId, EXIT_LBL);
         LLExit.addView(exitButton);
