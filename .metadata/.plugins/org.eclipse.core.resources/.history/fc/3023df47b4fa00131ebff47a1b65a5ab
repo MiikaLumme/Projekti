@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -65,8 +64,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         //set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
         sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
         roomSpinner.setSelection(sharedPrefs.getInt("roomspinner", 0));
-        Log.v("set roomspinner", Integer.toString((sharedPrefs.getInt("roomspinner", 0))));
-        
       
         //Exit Button
         exitButton	=	 makeButton(exitId, EXIT_LBL);
@@ -85,8 +82,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
     		 editor		= sharedPrefs.edit();
     		 editor.putInt("roomspinner", arg2);
-    		 editor.commit();
-    		 Log.v("roomspinner sharedPrefs", Integer.toString(arg2));
+    		 editor.commit();  	
     		 
     		 String item =    arg0.getItemAtPosition(arg2).toString();
     		
@@ -97,9 +93,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     			 //sets persistent pos after roomspinner persisted pos has been set. ISN'T WORKING.
     		     lightSpinner.setSelection(sharedPrefs.getInt("lightspinner", 0)); //depending on where I put this bit, it breaks stuff and I'm still not sure if it works
     		     persInfoTag = 1;
-    		     Log.v("set lightspinner", Integer.toString((sharedPrefs.getInt("lightspinner", 0))));
-    		     
-    		     
     		 }
     		 
     		 	
@@ -125,8 +118,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
     		 editor		= sharedPrefs.edit();
     		 editor.putInt("lightspinner", arg2);
-    		 Log.v("lightspinner sharedPrefs", Integer.toString(arg2));
-    		// editor.commit();
+    		 editor.commit();
 		 
     		 break; 		        
          }
@@ -146,12 +138,14 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 	        break;
         	
         case exitId:
+        	persInfoTag = 0;
 	        finish();  
 	        break;
         }
        
     }
    
+    
     public Button makeButton(int id, String label)	{
     	Button b = new Button(this);
         b.setText(label);
@@ -174,7 +168,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     	a = parser.getNames();
 		ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, a);
 		s.setAdapter(adapter);
-		//adapter.notifyDataSetChanged();
+		adapter.notifyDataSetChanged();
 		
 		//gets button type, for second spinner
 		if (item != "zonename")	{
