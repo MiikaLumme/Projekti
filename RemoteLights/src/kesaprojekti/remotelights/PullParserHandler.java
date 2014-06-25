@@ -12,6 +12,7 @@ import android.util.Log;
 
 public class PullParserHandler {
 	private	ArrayList<String>	names 		= new ArrayList<String>();
+	private ArrayList<Integer>	address		= new ArrayList<Integer>();
 	private ArrayList<Boolean>	buttonType	= new ArrayList<Boolean>();
 	private	String				text		= "";
 	private	int					tag 		= 0;
@@ -24,6 +25,11 @@ public class PullParserHandler {
 	public ArrayList<Boolean> getButtonType()	{
 		
 		return buttonType;
+	}
+	
+	public ArrayList<Integer> getAddress()	{
+		
+		return address;
 	}
 	
 	
@@ -67,6 +73,10 @@ public class PullParserHandler {
 						else {
 							buttonType.add(false);
 						}
+					}
+					if (tagname.equalsIgnoreCase("address") && tag != 0)	{
+						address.add(Integer.valueOf(text));
+						
 					}
 					
 					if (tagname.equalsIgnoreCase("zone"))	{

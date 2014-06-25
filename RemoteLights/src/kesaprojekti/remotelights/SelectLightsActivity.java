@@ -34,9 +34,9 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ArrayList<String>  			roomArray;
     private ArrayList<String>  			lightArray;
     private ArrayList<Boolean>			buttonArray;
+    private ArrayList<Integer>			addressArray;
     private LinearLayout				LLLights;
     private LinearLayout				LLExit;
-    private ConnectionHandler			thread;
     private SharedPreferences			sharedPrefs;		
     private SharedPreferences.Editor	editor;
     private int 						persInfoTag = 0;
@@ -130,7 +130,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         switch (arg0.getId()) {
        
         case lightId:
-	        startThread();
+        	
 	        break;
         	
         case exitId:
@@ -140,7 +140,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
     }
    
-    
     public Button makeButton(int id, String label)	{
     	Button b = new Button(this);
         b.setText(label);
@@ -163,18 +162,15 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     	a = parser.getNames();
 		ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, a);
 		s.setAdapter(adapter);
+
 		
-		//gets button type, for second spinner
+		//gets button type and address, for second spinner
 		if (item != "zonename")	{
-			buttonArray = parser.getButtonType();			
+			buttonArray 	= parser.getButtonType();
+			addressArray	= parser.getAddress();
 		}
     }
-    
-    public void startThread() {
-    	thread = new ConnectionHandler();
-    	thread.start();
-    }
-    
+
    public void savePosition(String string, int i)	{
 	   	sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
 		editor		= sharedPrefs.edit();
