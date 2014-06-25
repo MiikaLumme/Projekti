@@ -18,5 +18,7 @@
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="kesaprojekti.remotelights.PullParserHandler"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout.LayoutParams"/>
+<fullyQualifiedTypeName name="android.R.string"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="kesaprojekti.remotelights.R.id"/>
 </qualifiedTypeNameHistroy>
