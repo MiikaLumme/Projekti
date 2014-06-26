@@ -156,8 +156,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     }
     
     public void startThread() {
-    	int address = addressArray.get(lightSpinnerPos);
-    	thread = new ConnectionHandler(address);
+    	thread = new ConnectionHandler();
     	thread.start();
     }
     

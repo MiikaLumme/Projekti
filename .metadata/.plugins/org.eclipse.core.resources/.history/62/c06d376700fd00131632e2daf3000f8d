@@ -10,11 +10,11 @@ import java.net.Socket;
 import android.util.Log;
 
 public class ConnectionHandler extends Thread implements Runnable {
-	private int	address;
+	private int	lightSpinnerPos;
 	
 	
-	public ConnectionHandler(int address)	{
-		this.address = address;
+	public ConnectionHandler(int spinnerPos)	{
+		lightSpinnerPos = spinnerPos;
 	}
 
 	@Override
