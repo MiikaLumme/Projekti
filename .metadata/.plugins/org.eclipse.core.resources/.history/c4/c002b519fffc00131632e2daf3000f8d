@@ -10,10 +10,6 @@ import java.net.Socket;
 import android.util.Log;
 
 public class ConnectionHandler extends Thread implements Runnable {
-	
-	public ConnectionHandler()	{
-		
-	}
 
 	@Override
 	public void run() {
