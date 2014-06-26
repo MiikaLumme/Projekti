@@ -10,6 +10,12 @@ import java.net.Socket;
 import android.util.Log;
 
 public class ConnectionHandler extends Thread implements Runnable {
+	private int	address;
+	
+	
+	public ConnectionHandler(int address)	{
+		this.address = address;
+	}
 
 	@Override
 	public void run() {
@@ -22,20 +28,17 @@ public class ConnectionHandler extends Thread implements Runnable {
 			    int port = 4444;
 			    try
 			      {
-			         Log.v("Client", "Connecting to " + serverName + " on port " + port);
-			         Socket client = new Socket(serverName, port);
-			         Log.v("Client", "Just connected to "
-			                      + client.getRemoteSocketAddress());
+			    	Socket client = new Socket(serverName, port);
+
 			         OutputStream outToServer = client.getOutputStream();
 			         DataOutputStream out =
 			                       new DataOutputStream(outToServer);
+			         out.writeUTF("Address: "
+			                      + address + " ON");
 
-			         out.writeUTF("Hello from "
-			                      + client.getLocalSocketAddress());
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
-			         Log.v("Client", "Server says " + in.readUTF());
 			         client.close();
 			         
 			      }catch(IOException e)
