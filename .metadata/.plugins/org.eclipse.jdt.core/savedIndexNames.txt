@@ -1,6 +1,2 @@
-INDEX VERSION 1.126+Z:\summerProject\SummerProjectGit\.metadata\.plugins\org.eclipse.jdt.core
-775960144.index
-4114204971.index
+INDEX VERSION 1.126+Z:\SummerProject Git\.metadata\.plugins\org.eclipse.jdt.core
 1284074322.index
-3036814593.index
-618423496.index

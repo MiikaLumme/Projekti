@@ -37,9 +37,11 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ArrayList<Integer>			addressArray;
     private LinearLayout				LLLights;
     private LinearLayout				LLExit;
-    private SharedPreferences			sharedPrefs;		
+    private SharedPreferences			sharedPrefs;
+    private ConnectionHandler			thread;
     private SharedPreferences.Editor	editor;
     private int 						persInfoTag = 0;
+    private int							lightSpinnerPos;
     
     
    
@@ -115,6 +117,9 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 
     		 //sets spinner pos to shared prefs
  			 savePosition(LIGHTS_PREF, arg2);
+ 			 
+ 			 //saves lightSpinner position 
+ 			 lightSpinnerPos = arg2;
 		 
     		 break; 		        
          }
@@ -130,7 +135,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         switch (arg0.getId()) {
        
         case lightId:
-        	
+        	startThread();
 	        break;
         	
         case exitId:
@@ -148,6 +153,11 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         b.setOnClickListener(this);
         
         return b;
+    }
+    
+    public void startThread() {
+    	thread = new ConnectionHandler();
+    	thread.start();
     }
     
     public void setSpinner(String item, ArrayList<String> a, Spinner s)	{

@@ -17,7 +17,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private static final int connectId		= 20;
 	
     private Button        				startButton;
-  
+    private Button						connectButton;
+    private ConnectionHandler			thread;
     private LinearLayout				LLayout;
   
 
@@ -33,7 +34,9 @@ public class MainActivity extends Activity implements OnClickListener {
         //startButton
         startButton 	=	makeButton(startId, START_LBL);
         LLayout.addView(startButton);
-
+        //connectButton
+        connectButton 	= 	makeButton(connectId, CONNECT_LBL);
+        LLayout.addView(connectButton);
     }
     
     public Button makeButton(int id, String label)	{
@@ -54,12 +57,18 @@ public class MainActivity extends Activity implements OnClickListener {
             Intent i1 = new Intent (this, SelectLightsActivity.class);
             startActivity(i1);
             break;
-  
+            
+        case connectId:
+        	startThread();
+        	break;
 
         }
        
     }
     
-    
+    public void startThread() {
+    	thread = new ConnectionHandler();
+    	thread.start();
+    }
     
 }
