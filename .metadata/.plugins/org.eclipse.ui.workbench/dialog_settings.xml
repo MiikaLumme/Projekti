@@ -22,7 +22,15 @@
 	<section name="ShowViewDialog">
 		<item value="311" key="DIALOG_WIDTH"/>
 		<item value="com.android.ide.eclipse.ddms.views.LogCatView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+<<<<<<< HEAD
+		<item value="8" key="DIALOG_Y_ORIGIN"/>
+=======
 		<item value="-39" key="DIALOG_Y_ORIGIN"/>
+<<<<<<< HEAD
+=======
+>>>>>>> 1574c2bc063f0f27500fd2ab4983e29c3c19ee94
+		<item value="493" key="DIALOG_X_ORIGIN"/>
+>>>>>>> 964d430eb78d7abacbbe2d0450c5c2f8f77dd03d
 		<item value="438" key="DIALOG_HEIGHT"/>
 		<item value="493" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
