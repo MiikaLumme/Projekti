@@ -41,7 +41,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private ConnectionHandler			thread;
     private SharedPreferences.Editor	editor;
     private int 						persInfoTag = 0;
-    private int							lightSpinnerPos;
     
     
    
@@ -117,9 +116,6 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 
     		 //sets spinner pos to shared prefs
  			 savePosition(LIGHTS_PREF, arg2);
- 			 
- 			 //saves lightSpinner position 
- 			 lightSpinnerPos = arg2;
 		 
     		 break; 		        
          }
