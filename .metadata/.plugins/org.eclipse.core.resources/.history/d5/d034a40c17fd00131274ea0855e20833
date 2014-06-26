@@ -28,17 +28,25 @@ public class ConnectionHandler extends Thread implements Runnable {
 			    int port = 4444;
 			    try
 			      {
-			    	Socket client = new Socket(serverName, port);
-
+//			         Log.v("Client", "Connecting to " + serverName + " on port " + port);
+			         Socket client = new Socket(serverName, port);
+//			         Log.v("Client", "Just connected to "
+//			                      + client.getRemoteSocketAddress());
 			         OutputStream outToServer = client.getOutputStream();
 			         DataOutputStream out =
 			                       new DataOutputStream(outToServer);
-			         out.writeUTF("Address: "
-			                      + address + " ON");
+			         out.writeUTF("Hello from "
+			                      + client.getLocalSocketAddress());
 
+			         OutputStream outToServer2 = client.getOutputStream();
+			         DataOutputStream out2 =
+			        		 		new DataOutputStream(outToServer2);
+			         out2.writeUTF(serverName);
+			         
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
+//			         Log.v("Client", "Server says " + in.readUTF());
 			         client.close();
 			         
 			      }catch(IOException e)
