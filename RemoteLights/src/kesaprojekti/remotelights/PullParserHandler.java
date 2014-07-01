@@ -14,12 +14,18 @@ public class PullParserHandler {
 	private	ArrayList<String>	names 		= new ArrayList<String>();
 	private ArrayList<Integer>	address		= new ArrayList<Integer>();
 	private ArrayList<Boolean>	buttonType	= new ArrayList<Boolean>();
+	private ArrayList<String>	allTargets	= new ArrayList<String>();
 	private	String				text		= "";
 	private	int					tag 		= 0;
 	
 	public ArrayList<String> getNames()	{
 		
 		return names;
+	}
+	
+	public ArrayList<String> getAllTargets() {
+		
+		return allTargets;
 	}
 	
 	public ArrayList<Boolean> getButtonType()	{
@@ -58,6 +64,10 @@ public class PullParserHandler {
 					//collects all zonenames
 					if (tagname.equalsIgnoreCase("zonename") && name.equalsIgnoreCase("zonename"))	{
 						names.add(text);
+					}
+					//targetnames in all zones
+					if (tagname.equalsIgnoreCase("targetname") && name.equalsIgnoreCase("zonename"))	{
+						allTargets.add(text);
 					}
 					//targetnames in given zone
 					if (tagname.equalsIgnoreCase("targetname") && tag != 0)	{
