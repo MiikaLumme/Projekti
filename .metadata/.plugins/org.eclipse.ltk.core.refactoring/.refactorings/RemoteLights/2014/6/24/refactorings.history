@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename field &apos;sharedPref&apos; in &apos;kesaprojekti.remotelights.SelectLightsActivity&apos; to &apos;sharedPrefs&apos;&#x0D;&#x0A;- Original project: &apos;RemoteLights&apos;&#x0D;&#x0A;- Original element: &apos;kesaprojekti.remotelights.SelectLightsActivity.sharedPref&apos;&#x0D;&#x0A;- Renamed element: &apos;kesaprojekti.remotelights.SelectLightsActivity.sharedPrefs&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;sharedPref&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;kesaprojekti.remotelights{SelectLightsActivity.java[SelectLightsActivity^sharedPref" name="sharedPrefs" references="true" setter="false" stamp="1402487941606" textual="false" version="1.0"/>
-</session>
