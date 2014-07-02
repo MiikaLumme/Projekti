@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devconfig>
+    <zone>
+        <zonename>Living Room</zonename>
+        <abbreviation>LR</abbreviation>
+        <targets>
+            <target>
+                <targetname>Ceiling Lamp 1</targetname>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+                <address>14</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 2</targetname>
+                <abbreviation>CL2</abbreviation>
+                <type>OnOff</type>
+                <address>12</address>
+            </target>
+            <target>
+                <targetname>Window Lamp 1</targetname>
+                <abbreviation>WL2</abbreviation>
+                <type>OnOff</type>
+                <address>12</address>
+            </target>
+        </targets>
+    </zone>
+    <zone>
+        <zonename>Kitchen</zonename>
+        <abbreviation>KI</abbreviation>
+        <targets>
+            <target>
+                <targetname>Ceiling Lamp 1</targetname>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+                <address>33</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 2</targetname>
+                <abbreviation> CL2</abbreviation>
+                <type>OnOff</type>
+                <address>34</address>
+            </target>
+        </targets>
+    </zone>
+    <zone>
+        <zonename>Bedroom</zonename>
+        <abbreviation>BR</abbreviation>
+        <targets>
+            <target>
+                <targetname>Bedside lamp 1</targetname>
+                <abbreviation>BL1</abbreviation>
+                <type>OnOff</type>
+                <address>45</address>
+            </target>
+            <target>
+                <targetname>Bedside Lamp 2</targetname>
+                <abbreviation> BL2</abbreviation>
+                <type>OnOff</type>
+                <address>46</address>
+            </target>
+        </targets>
+    </zone>
+</devconfig>
