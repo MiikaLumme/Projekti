@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devconfig>
+    <zone>
+        <zonename>Living Room</zonename>
+        <abbreviation>LR</abbreviation>
+        <targets>
+            <target>
+                <targetname>Ceiling Lamp 1</targetname>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+                <address>13</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 2</targetname>
+                <abbreviation>CL2</abbreviation>
+                <type>OnOff</type>
+                <address>14</address>
+            </target>
+            <target>
+                <targetname>Window Lamp 1</targetname>
+                <abbreviation>WL1</abbreviation>
+                <type>OnOff</type>
+                <address>15</address>
+            </target>
+            <target>
+                <targetname>Window Lamp 2</targetname>
+                <abbreviation>WL2</abbreviation>
+                <type>OnOff</type>
+                <address>16</address>
+            </target>
+            <target>
+                <targetname>Window Lamp 3</targetname>
+                <abbreviation>WL3</abbreviation>
+                <type>OnOff</type>
+                <address>17</address>
+            </target>
+            <target>
+                <targetname>Door Lamp1</targetname>
+                <abbreviation>DL1</abbreviation>
+                <type>OnOff</type>
+                <address>18</address>
+            </target>
+            <target>
+                <targetname>Door Lamp 2</targetname>
+                <abbreviation>DL2</abbreviation>
+                <type>OnOff</type>
+                <address>19</address>
+            </target>
+        </targets>
+    </zone>
+    <zone>
+        <zonename>Kitchen</zonename>
+        <abbreviation>KI</abbreviation>
+        <targets>
+            <target>
+                <targetname>Ceiling Lamp 1</targetname>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+                <address>33</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 2</targetname>
+                <abbreviation> CL2</abbreviation>
+                <type>OnOff</type>
+                <address>34</address>
+            </target>
+            <target>
+                <targetname>Stove lamp</targetname>
+                <abbreviation> SL</abbreviation>
+                <type>OnOff</type>
+                <address>35</address>
+            </target>
+            <target>
+                <targetname>Cupboard Lamp</targetname>
+                <abbreviation> CBL</abbreviation>
+                <type>OnOff</type>
+                <address>36</address>
+            </target>
+            <target>
+                <targetname>Counter Top Light</targetname>
+                <abbreviation> CTL</abbreviation>
+                <type>OnOff</type>
+                <address>37</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 3</targetname>
+                <abbreviation> CL3</abbreviation>
+                <type>OnOff</type>
+                <address>38</address>
+            </target>
+            <target>
+                <targetname>Desk Lamp</targetname>
+                <abbreviation> DL</abbreviation>
+                <type>OnOff</type>
+                <address>39</address>
+            </target>
+        </targets>
+    </zone>
+    <zone>
+        <zonename>Bedroom</zonename>
+        <abbreviation>BR</abbreviation>
+        <targets>
+            <target>
+                <targetname>Bedside lamp 1</targetname>
+                <abbreviation>BL1</abbreviation>
+                <type>OnOff</type>
+                <address>45</address>
+            </target>
+            <target>
+                <targetname>Bedside Lamp 2</targetname>
+                <abbreviation>BL2</abbreviation>
+                <type>OnOff</type>
+                <address>46</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 1</targetname>
+                <abbreviation>CL1</abbreviation>
+                <type>OnOff</type>
+                <address>47</address>
+            </target>
+            <target>
+                <targetname>Ceiling Lamp 2</targetname>
+                <abbreviation>CL2</abbreviation>
+                <type>OnOff</type>
+                <address>48</address>
+            </target>
+            <target>
+                <targetname>Closet lamp</targetname>
+                <abbreviation>CL</abbreviation>
+                <type>OnOff</type>
+                <address>49</address>
+            </target>
+        </targets>
+    </zone>
+    <zone>
+        <zonename>Bathroom</zonename>
+        <abbreviation>BR</abbreviation>
+        <targets>
+            <target>
+                <targetname>Ceiling Lamp</targetname>
+                <abbreviation>CL</abbreviation>
+                <type>OnOff</type>
+                <address>51</address>
+            </target>
+            <target>
+                <targetname>Mirror Lamp</targetname>
+                <abbreviation>ML</abbreviation>
+                <type>OnOff</type>
+                <address>52</address>
+            </target>
+        
+        </targets>
+    </zone>
+</devconfig>

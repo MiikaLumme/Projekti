@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,13 +23,17 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 	private static final String XML_FILE	= "settings.xml";
 	private static final String	EXIT_LBL	= "Exit";
 	private static final String	LIGHTS_LBL	= "Lights";
+	private static final String	STATUS_LBL	= "Light status";
 	private static final String	LIGHTS_PREF	= "lightspinner";
 	private static final String ROOM_PREF	= "roomspinner";
 	private static final int 	exitId		= 50;
     private static final int 	lightId		= 5;
+    private static final int 	listId		= 10;
+    
 	
     private Button         	   			exitButton;
     private Button						lightButton;
+    private Button						listButton;
     private Spinner            			roomSpinner;
     private Spinner            			lightSpinner;
     private ArrayList<String>  			roomArray;
@@ -69,6 +74,10 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         //set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
         sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
         roomSpinner.setSelection(sharedPrefs.getInt(ROOM_PREF, 0));
+        
+        //List button
+        listButton =  makeButton(listId, STATUS_LBL);
+        LLExit.addView(listButton);
         
         //Exit Button
         exitButton	=	 makeButton(exitId, EXIT_LBL);
@@ -141,7 +150,13 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         case exitId:
 	        finish();  
 	        break;
+	        
+        case listId:
+        	Intent intent = new Intent (this, ListActivity.class);
+            startActivity(intent);
+        	break;
         }
+        
        
     }
    

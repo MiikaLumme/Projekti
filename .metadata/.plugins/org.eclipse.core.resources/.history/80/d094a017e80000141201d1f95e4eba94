@@ -1,0 +1,35 @@
+package kesaprojekti.remotelights;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class ListActivity extends Activity {
+	private static final String XML_FILE	= "settings.xml";
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_list);
+		
+PullParserHandler	parser	= new PullParserHandler();
+    	
+    	try {
+			parser.parse(getAssets().open(XML_FILE), "zonename");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	ArrayList<String> allZones		= new ArrayList<String>();
+    	ArrayList<String> allTargets	= new ArrayList<String>();
+    	
+    	allZones	= parser.getNames();
+    	allTargets	= parser.getAllTargets();
+		
+		
+	}
+}

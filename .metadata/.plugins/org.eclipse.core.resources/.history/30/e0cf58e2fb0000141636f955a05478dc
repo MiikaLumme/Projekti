@@ -1,0 +1,6 @@
+package kesaprojekti.remotelights;
+
+public class CustomArrayAdapter extends ArrayAdapter<String> {
+	
+
+}

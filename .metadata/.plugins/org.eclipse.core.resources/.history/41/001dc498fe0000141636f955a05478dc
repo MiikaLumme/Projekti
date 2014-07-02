@@ -1,0 +1,8 @@
+package kesaprojekti.remotelights;
+
+import java.util.List;
+
+
+public class CustomArrayAdapter {
+
+}
