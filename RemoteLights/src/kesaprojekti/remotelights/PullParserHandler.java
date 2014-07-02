@@ -16,6 +16,7 @@ public class PullParserHandler {
 	private ArrayList<Boolean>	buttonType	= new ArrayList<Boolean>();
 	private ArrayList<String>	allTargets	= new ArrayList<String>();
 	private	String				text		= "";
+	private String				currZone	= "";
 	private	int					tag 		= 0;
 	
 	public ArrayList<String> getNames()	{
@@ -64,14 +65,21 @@ public class PullParserHandler {
 					//collects all zonenames
 					if (tagname.equalsIgnoreCase("zonename") && name.equalsIgnoreCase("zonename"))	{
 						names.add(text);
+						//assigns current zone name to currZone
+						currZone = text;
 					}
-					//targetnames in all zones
-					if (tagname.equalsIgnoreCase("targetname") && name.equalsIgnoreCase("zonename"))	{
-						allTargets.add(text);
-					}
-					//targetnames in given zone
-					if (tagname.equalsIgnoreCase("targetname") && tag != 0)	{
-						names.add(text);
+					
+					//targetnames
+					if (tagname.equalsIgnoreCase("targetname"))	{
+						//all (add currZone + target)
+						allTargets.add(currZone + ": " + text);
+						
+						
+						//in given zone
+						if (tag != 0)	{
+							names.add(text);
+						}
+						
 						
 					}
 					//type of button

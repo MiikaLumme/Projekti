@@ -29,10 +29,8 @@ public class ListActivity extends Activity {
 			e.printStackTrace();
 		}
     	
-    	ArrayList<String> allZones		= new ArrayList<String>();
     	ArrayList<String> allTargets	= new ArrayList<String>();
     	
-    	allZones	= parser.getNames();
     	allTargets	= parser.getAllTargets();
     	
     	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.label, allTargets);
