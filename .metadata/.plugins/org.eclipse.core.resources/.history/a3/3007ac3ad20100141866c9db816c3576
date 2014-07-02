@@ -19,7 +19,6 @@ public class PullParserHandler {
 	private String				currZone	= "";
 	private	int					tag 		= 0;
 	
-	//
 	public ArrayList<String> getNames()	{
 		
 		return names;
