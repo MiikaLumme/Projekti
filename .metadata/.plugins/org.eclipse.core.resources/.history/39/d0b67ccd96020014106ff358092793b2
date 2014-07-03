@@ -7,11 +7,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import android.content.SharedPreferences;
 import android.util.Log;
 
 public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
+	
 	
 	public ConnectionHandler(int address)	{
 		this.address = address;
@@ -39,11 +39,6 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
 			         Log.v(" return ", " address: " +  in.readInt() );
-			         
-			       
-			         
-			         
-			         
 			         client.close();
 			         
 			      }catch(IOException e)
@@ -55,9 +50,6 @@ public class ConnectionHandler extends Thread implements Runnable {
 		}).start();
 		
 	}
-	
-	
-	
 	
 
 }

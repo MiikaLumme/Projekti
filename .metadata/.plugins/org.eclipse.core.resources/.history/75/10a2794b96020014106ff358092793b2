@@ -53,7 +53,6 @@ public class MainActivity extends Activity implements OnClickListener {
         case startId:
         	Thread thread = new ConnectionHandler(0);
         	thread.start();
-
             Intent i1 = new Intent (this, SelectLightsActivity.class);
             startActivity(i1);
             break;
