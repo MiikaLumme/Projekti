@@ -13,6 +13,7 @@ import android.util.Log;
 public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
 	
+	
 	public ConnectionHandler(int address)	{
 		this.address = address;
 	}
@@ -40,7 +41,10 @@ public class ConnectionHandler extends Thread implements Runnable {
 			                        new DataInputStream(inFromServer);
 			         Log.v(" return ", " address: " +  in.readInt() );
 			         
-			       
+			        SharedPreferences			sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
+			 		SharedPreferences.Editor	editor		= sharedPrefs.edit();
+			 		editor.putInt("status", in.readInt());
+			 		editor.commit();
 			         
 			         
 			         
@@ -55,9 +59,6 @@ public class ConnectionHandler extends Thread implements Runnable {
 		}).start();
 		
 	}
-	
-	
-	
 	
 
 }
