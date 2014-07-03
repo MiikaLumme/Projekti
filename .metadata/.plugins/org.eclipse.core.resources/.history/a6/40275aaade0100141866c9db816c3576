@@ -12,7 +12,9 @@ import android.widget.LinearLayout;
 public class MainActivity extends Activity implements OnClickListener {
 	   
 	private static final String START_LBL	= "Start";
+	private static final String CONNECT_LBL	= "Connect";
 	private static final int startId		= 10;
+	private static final int connectId		= 20;
 	
     private Button        				startButton;
   
