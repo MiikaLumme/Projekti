@@ -52,7 +52,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			                        new DataInputStream(inFromServer);
 			         Log.v(" return ", " address: " +  in.readInt() );
 			         
-			         saveStatus(in.readInt());
+			        
 			         
 			         
 			         

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
+	private static final String	PREFS_NAME  = "PrefsFile";
 	private static final String XML_FILE	= "settings.xml";
 	private static final String	EXIT_LBL	= "Exit";
 	private static final String	LIGHTS_LBL	= "Lights";
@@ -73,6 +74,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
         //set persisted pos to spinner, calls onItemSelected for roomSpinner (lightSpinner is set in onItemSelected)
         sharedPrefs		= PreferenceManager.getDefaultSharedPreferences(this);
+        //sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
         roomSpinner.setSelection(sharedPrefs.getInt(ROOM_PREF, 0));
         
         //List button
@@ -172,7 +174,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     
     public void startThread() {
     	int address = addressArray.get(lightSpinnerPos);
-    	thread = new ConnectionHandler(address, this);
+    	thread = new ConnectionHandler(address);
     	thread.start();
     }
     
@@ -199,6 +201,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 
    public void savePosition(String string, int i)	{
 	    sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+	   	//sharedPrefs	= getSharedPreferences(PREFS_NAME, 0);
 		editor		= sharedPrefs.edit();
 		editor.putInt(string, i);
 		editor.commit();
