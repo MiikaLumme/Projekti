@@ -21,10 +21,10 @@ public class ConnectionHandler extends Thread implements Runnable {
 		this.context = context;
 	}
 	
-	public void saveStatus(int i)	{
+	public void asgasd()	{
 	 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		 SharedPreferences.Editor	editor		= sharedPrefs.edit();
-		 editor.putInt("status", i);
+		 editor.putInt(string, i);
 		 editor.commit();
 	}
 	
@@ -52,7 +52,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			                        new DataInputStream(inFromServer);
 			         Log.v(" return ", " address: " +  in.readInt() );
 			         
-			         saveStatus(in.readInt());
+			        
 			         
 			         
 			         
