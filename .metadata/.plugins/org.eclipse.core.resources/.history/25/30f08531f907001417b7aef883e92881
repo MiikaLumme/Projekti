@@ -41,7 +41,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			@Override
 			public void run() {
 				
-				String serverName = "10.177.138.23";
+				String serverName = "10.177.138.24";
 			    int port = 4444;
 			    try
 			      {
