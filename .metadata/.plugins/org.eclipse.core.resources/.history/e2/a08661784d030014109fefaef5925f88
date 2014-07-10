@@ -22,7 +22,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 	}
 	
 	public void saveStatus(int i)	{
-		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+	 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		 SharedPreferences.Editor	editor		= sharedPrefs.edit();
 		 editor.putInt("status", i);
 		 editor.commit();
@@ -50,7 +50,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
-			         Log.v(" return ", " Status: " +  in.readInt() );
+			         Log.v(" return ", " address: " +  in.readInt() );
 			         
 			         saveStatus(in.readInt());
 			         

@@ -22,9 +22,9 @@ public class ConnectionHandler extends Thread implements Runnable {
 	}
 	
 	public void saveStatus(int i)	{
-		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+	 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		 SharedPreferences.Editor	editor		= sharedPrefs.edit();
-		 editor.putInt("status", i);
+		 editor.putInt("status", 5);
 		 editor.commit();
 	}
 	

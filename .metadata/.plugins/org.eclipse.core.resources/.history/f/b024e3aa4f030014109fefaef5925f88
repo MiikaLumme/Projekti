@@ -14,15 +14,15 @@ import android.util.Log;
 
 public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
-	Context	context;
+	Context	mcontext;
 	
 	public ConnectionHandler(int address, Context context)	{
 		this.address = address;
-		this.context = context;
+		mcontext = context;
 	}
 	
 	public void saveStatus(int i)	{
-		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mcontext);
 		 SharedPreferences.Editor	editor		= sharedPrefs.edit();
 		 editor.putInt("status", i);
 		 editor.commit();
