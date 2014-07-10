@@ -1,6 +1,5 @@
 package kesaprojekti.remotelights;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -11,7 +10,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -20,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 public class SelectLightsActivity extends Activity implements OnItemSelectedListener, OnClickListener {
-	private static final String XML_FILE	= "settings.xml";
 	private static final String	EXIT_LBL	= "Exit";
 	private static final String	LIGHTS_LBL	= "Lights";
 	private static final String	STATUS_LBL	= "Light status";
@@ -28,8 +25,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
 	private static final String ROOM_PREF	= "roomspinner";
 	private static final int 	exitId		= 50;
     private static final int 	lightId		= 5;
-    private static final int 	listId		= 10;
-    
+    private static final int 	listId		= 10;    
 	
     private Button         	   			exitButton;
     private Button						lightButton;
@@ -43,10 +39,10 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private LinearLayout				LLLights;
     private LinearLayout				LLExit;
     private SharedPreferences			sharedPrefs;
-    private ConnectionHandler			thread;
-    private SharedPreferences.Editor	editor;
     private int 						persInfoTag = 0;
+    private char						statusTag = 0;
     private int							lightSpinnerPos;
+    private Helper 						h;
     
     
    
@@ -76,11 +72,12 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         roomSpinner.setSelection(sharedPrefs.getInt(ROOM_PREF, 0));
         
         //List button
-        listButton =  makeButton(listId, STATUS_LBL);
+        h 			= new Helper();
+        listButton 	=  h.makeButton(listId, STATUS_LBL, this);
         LLExit.addView(listButton);
         
         //Exit Button
-        exitButton	=	 makeButton(exitId, EXIT_LBL);
+        exitButton	=	 h.makeButton(exitId, EXIT_LBL, this);
         LLExit.addView(exitButton);
    
     }
@@ -93,7 +90,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     	 switch (arg0.getId()) {
     	 case R.id.roomSpinner:
     		 //sets spinner pos to shared prefs (persisting spinner pos)
-    		 savePosition(ROOM_PREF, arg2);
+    		 h.saveStatus(arg2, ROOM_PREF, this);
     		 
     		 String item =    arg0.getItemAtPosition(arg2).toString();
     		
@@ -110,23 +107,19 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
           
     	 case R.id.lightSpinner:
     		 
-    		 //clear old light button
-    		 LLLights.removeView(lightButton);
+    		 
     		 
     		 //check's the type of button and sets the right button
     		 if (buttonArray.get(arg2)) {
-    			 
-    			//LightsButton
-    			lightButton = makeButton(lightId, LIGHTS_LBL);
-    			LLLights.addView(lightButton);    			 
+    			 makeSwitchButton();    					 
     		 }
     		 else	{
     			 //other types of button
     		 }
 
     		 //sets spinner pos to shared prefs
- 			 savePosition(LIGHTS_PREF, arg2);
- 			 
+    		 h.saveStatus(arg2, LIGHTS_PREF, this);
+    		 
  			 //saves lightSpinner position 
  			 lightSpinnerPos = arg2;
 		 
@@ -145,7 +138,19 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
        
         case lightId:
         	startThread();
-	        break;
+        	//remove old button add new one according to status tag, change the tag
+        	LLLights.removeView(lightButton);
+        	if (statusTag == 1)	{
+        		lightButton = h.makeButton(lightId, "Switch off", this);
+        		statusTag = 0;
+        	}
+        	else	{
+        		lightButton = h.makeButton(lightId, "Switch on", this);
+        		statusTag = 1;
+        	}
+        	LLLights.addView(lightButton);
+        	
+        	break;
         	
         case exitId:
 	        finish();  
@@ -156,52 +161,43 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
             startActivity(intent);
         	break;
         }
-        
-       
     }
-   
-    public Button makeButton(int id, String label)	{
-    	Button b = new Button(this);
-        b.setText(label);
-        b.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        b.setId(id);
-        b.setOnClickListener(this);
-        
-        return b;
+      
+    public void startThread() {
+    	int address 				= addressArray.get(lightSpinnerPos);
+    	ConnectionHandler thread	= new ConnectionHandler(this);
+    	thread.start(address);
     }
     
-    public void startThread() {
-    	int address = addressArray.get(lightSpinnerPos);
-    	thread = new ConnectionHandler(address, this);
-    	thread.start();
+    public void makeSwitchButton()	{
+    	//clear old light button
+		LLLights.removeView(lightButton);
+  
+    	int status = sharedPrefs.getInt("status", 0);
+		int mask = 1 << (addressArray.get(lightSpinnerPos) - 1);
+   		if ((status & mask) != 0)	{
+   			lightButton = h.makeButton(lightId, "Switch off", this);
+   			statusTag	= 0;
+   		} 
+   		else	{
+   			lightButton = h.makeButton(lightId, "Switch on", this);
+   			statusTag 	= 1;
+   		}
+		LLLights.addView(lightButton);    	
     }
     
     public void setSpinner(String item, ArrayList<String> a, Spinner s)	{
-    	PullParserHandler	parser	= new PullParserHandler();
-    	
-    	try {
-			parser.parse(getAssets().open(XML_FILE), item);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    	PullParserHandler parser = new PullParserHandler();
+    	parser = parser.getParser(item, this);
     	
     	a = parser.getNames();
 		ArrayAdapter<String> adapter	= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, a);
 		s.setAdapter(adapter);
-
 		
 		//gets button type and address, for second spinner
 		if (item != "zonename")	{
 			buttonArray 	= parser.getButtonType();
 			addressArray	= parser.getAddress();
 		}
-    }
-
-   public void savePosition(String string, int i)	{
-	    sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		editor		= sharedPrefs.edit();
-		editor.putInt(string, i);
-		editor.commit();
-   }
-    
+    }    
 }

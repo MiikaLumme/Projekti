@@ -16,18 +16,24 @@ public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
 	Context	context;
 	
-	public ConnectionHandler(int address, Context context)	{
-		this.address = address;
+	public ConnectionHandler(Context context)	{
 		this.context = context;
 	}
 	
+<<<<<<< HEAD
 	public void saveStatus(int i)	{
 		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 		 SharedPreferences.Editor	editor		= sharedPrefs.edit();
 		 editor.putInt("status", i);
 		 editor.commit();
 	}
+=======
+>>>>>>> b7a1043ef5af317eea8d3fbf873581b209a75164
 	
+	public void start(int address)	{
+		this.address = address;
+		start();
+	}
 
 	@Override
 	public void run() {
@@ -36,11 +42,12 @@ public class ConnectionHandler extends Thread implements Runnable {
 			@Override
 			public void run() {
 				
-				String serverName = "10.177.138.23";
+				String serverName = "10.177.138.24";
 			    int port = 4444;
 			    try
 			      {
-			    	Socket client = new Socket(serverName, port);
+			    	
+			    	 Socket client = new Socket(serverName, port);
 
 			         OutputStream outToServer = client.getOutputStream();
 			         DataOutputStream out =
@@ -50,12 +57,19 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
+<<<<<<< HEAD
 			         Log.v(" return ", " Status: " +  in.readInt() );
 			         
 			         saveStatus(in.readInt());
 			         
 			         
+=======
+			         int i = in.readInt();
+>>>>>>> b7a1043ef5af317eea8d3fbf873581b209a75164
 			         
+			         Helper h = new Helper();
+			         h.saveStatus(i, "status", context);
+			         	         
 			         client.close();
 			         
 			      }catch(IOException e)

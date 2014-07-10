@@ -29,34 +29,23 @@ public class MainActivity extends Activity implements OnClickListener {
         
         
         //startButton
-        startButton 	=	makeButton(startId, START_LBL);
+        Helper h = new Helper();
+        startButton 	=	h.makeButton(startId, START_LBL, this);
         LLayout.addView(startButton);
 
     }
     
-    public Button makeButton(int id, String label)	{
-    	Button b = new Button(this);
-        b.setText(label);
-        b.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        b.setId(id);
-        b.setOnClickListener(this);
-        
-        return b;
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
        
         case startId:
-        	Thread thread = new ConnectionHandler(0, this);
+        	ConnectionHandler thread = new ConnectionHandler(this);
         	thread.start();
 
             Intent i1 = new Intent (this, SelectLightsActivity.class);
             startActivity(i1);
             break;
-  
-
         }
        
     }
