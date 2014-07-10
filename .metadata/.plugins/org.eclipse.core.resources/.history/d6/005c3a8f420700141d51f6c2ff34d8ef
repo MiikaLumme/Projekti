@@ -1,0 +1,75 @@
+package kesaprojekti.remotelights;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+public class ConnectionHandler extends Thread implements Runnable {
+	private int	address;
+	
+	public ConnectionHandler(int address)	{
+		this.address = address;
+	}
+	
+	public void saveStatus(int i, String string, Context context)	{
+		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		 SharedPreferences.Editor	editor		= sharedPrefs.edit();
+		 
+		 editor.putInt(string, i);
+		 editor.commit();
+	}
+	
+
+	@Override
+	public void run() {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				String serverName = "10.177.138.24";
+			    int port = 4444;
+			    try
+			      {
+			    	
+			    	 Socket client = new Socket(serverName, port);
+
+			         OutputStream outToServer = client.getOutputStream();
+			         DataOutputStream out =
+			                       new DataOutputStream(outToServer);
+			         out.writeInt(address);
+
+			         InputStream inFromServer = client.getInputStream();
+			         DataInputStream in =
+			                        new DataInputStream(inFromServer);
+			         int i = in.readInt();
+			         			    		         
+			         saveStatus(i, "status");
+			         	         
+			         client.close();
+			         
+			      }catch(IOException e)
+			      {
+			         e.printStackTrace();
+			      }
+				
+			}
+			
+			
+		}).start();
+		
+	}
+	
+	
+	
+	
+
+}

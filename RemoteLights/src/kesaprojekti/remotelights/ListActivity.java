@@ -1,18 +1,22 @@
 package kesaprojekti.remotelights;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class ListActivity extends Activity {
-	private static final String XML_FILE	= "settings.xml";
+public class ListActivity extends Activity implements OnItemClickListener {	
+	private ArrayList<Integer>		activeAddr;	
+	private ArrayList<String>		activeTargets;
+	private ArrayAdapter<String>	adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,25 +26,55 @@ public class ListActivity extends Activity {
 		ListView lv = (ListView)findViewById(R.id.listView1);
 		
 		SharedPreferences sharedPrefs		= PreferenceManager.getDefaultSharedPreferences(this);
-        Log.v("list activity", Integer.toString(sharedPrefs.getInt("status", 0)));
+        int status = sharedPrefs.getInt("status", 0);
 		
-		
-		
-		PullParserHandler	parser	= new PullParserHandler();
+        PullParserHandler parser = new PullParserHandler();
+    	parser = parser.getParser("zonename", this);
     	
-    	try {
-			parser.parse(getAssets().open(XML_FILE), "zonename");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    	// get all targets and addresses
+    	ArrayList<String>	allTargets		= parser.getAllTargets();
+    	ArrayList<Integer> 	allAddr			= parser.getAllAddr();
     	
-    	ArrayList<String> allTargets	= new ArrayList<String>();
+    	activeTargets	= new ArrayList<String>();
+    	activeAddr		= new ArrayList<Integer>();
     	
-    	allTargets	= parser.getAllTargets();
+    	int targetCount = allTargets.size();
     	
-    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.label, allTargets);
+    	//go through each element in allTargets and check if it's status is on
+    	//if target is on add addresses and target names for into respective arrays 
+    	for (int i = 0; i < allTargets.size(); i++)	{
+    		int mask = 1 << (targetCount - 1);
+    		if ((status & mask) != 0)	{
+    			activeTargets.add(allTargets.get(i));
+    			activeAddr.add(allAddr.get(i));
+    		}
+    		targetCount--;
+    	}
+
+    	adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.label, activeTargets);
 		
 		lv.setAdapter(adapter);
+		
+		lv.setOnItemClickListener(this);
     	
+	}
+	
+	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		//turn off target on click
+		
+		String item = (String) parent.getItemAtPosition(position);
+		int address = activeAddr.get(position);
+    	ConnectionHandler thread = new ConnectionHandler(this);
+    	thread.start(address);
+		
+		Toast.makeText(getApplicationContext(), item + " has been switched off.", Toast.LENGTH_LONG).show();
+		//remove item from display
+		activeTargets.remove(position);
+		activeAddr.remove(position);
+		adapter.notifyDataSetChanged();
+		
 	}
 }
