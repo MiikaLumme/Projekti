@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Change Layout" description="Change Layout" file="/RemoteLights/res/layout/activity_list.xml" flags="6" flatten="true" id="com.android.ide.eclipse.adt.refactoring.convert" proj="/RemoteLights" sel-end="285" sel-start="0" stamp="1404195812713" type="android.widget.LinearLayout"/>
-</session>
