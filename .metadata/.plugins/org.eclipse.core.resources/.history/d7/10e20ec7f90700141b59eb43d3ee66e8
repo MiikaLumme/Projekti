@@ -139,16 +139,16 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         case lightId:
         	startThread();
         	//remove old button add new one according to status tag, change the tag
-//        	LLLights.removeView(lightButton);
-//        	if (statusTag == 1)	{
-//        		lightButton = h.makeButton(lightId, "Switch off", this);
-//        		statusTag = 0;
-//        	}
-//        	else	{
-//        		lightButton = h.makeButton(lightId, "Switch on", this);
-//        		statusTag = 1;
-//        	}
-//        	LLLights.addView(lightButton);
+        	LLLights.removeView(lightButton);
+        	if (statusTag == 1)	{
+        		lightButton = h.makeButton(lightId, "Switch off", this);
+        		statusTag = 0;
+        	}
+        	else	{
+        		lightButton = h.makeButton(lightId, "Switch on", this);
+        		statusTag = 1;
+        	}
+        	LLLights.addView(lightButton);
         	
         	break;
         	
