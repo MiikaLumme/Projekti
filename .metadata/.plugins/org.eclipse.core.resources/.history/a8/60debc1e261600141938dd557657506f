@@ -1,0 +1,28 @@
+package kesaprojekti.remotelights;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.view.Menu;
+
+public class wifiConnection {
+
+	   public Boolean isWifiAvailable() {
+
+	        try {
+	            ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
+	                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+	            NetworkInfo wifiInfo = connectivityManager
+	                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+	            if (wifiInfo.isConnected()) {
+	                return true;
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return false;
+	    }
+
+	
+}

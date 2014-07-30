@@ -1,0 +1,22 @@
+package kesaprojekti.remotelights;
+
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.os.Bundle;
+
+public class AlertDialog extends DialogFragment{
+	
+	public static AlertDialog newInstance(int title) {
+		AlertDialog frag = new AlertDialog();
+		Bundle args = new Bundle();
+		args.putInt("title", title);
+		frag.setArguments(args);
+		return frag;
+	}
+
+	public Dialog onCreateDialog (Bundle savedInstanceState) {
+		int title = getArguments().getInt("title");
+		
+		return new AlertDialog.Builder(getActivity()).
+	}
+}
