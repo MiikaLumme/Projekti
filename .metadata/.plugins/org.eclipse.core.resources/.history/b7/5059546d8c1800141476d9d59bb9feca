@@ -41,7 +41,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         OutputStream outToServer = client.getOutputStream();
 			         DataOutputStream out =
 			                       new DataOutputStream(outToServer);
-			         out.write((address + "\n").getBytes());
+			         out.writeInt((char)address);
 
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
