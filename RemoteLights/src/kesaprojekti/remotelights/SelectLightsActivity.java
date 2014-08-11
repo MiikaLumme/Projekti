@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -106,7 +107,8 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
           
     	 case R.id.lightSpinner:
     		 
-    		 
+    		//saves lightSpinner position 
+    		 lightSpinnerPos = arg2;
     		 
     		 //check's the type of button and sets the right button
     		 if (buttonArray.get(arg2)) {
@@ -119,8 +121,8 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     		 //sets spinner pos to shared prefs
     		 h.saveStatus(arg2, LIGHTS_PREF, this);
     		 
- 			 //saves lightSpinner position 
- 			 lightSpinnerPos = arg2;
+ 			 
+ 			
 		 
     		 break; 		        
          }
@@ -138,16 +140,18 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
         case lightId:
         	startThread();
         	//remove old button add new one according to status tag, change the tag
-//        	LLLights.removeView(lightButton);
-//        	if (statusTag == 1)	{
-//        		lightButton = h.makeButton(lightId, "Switch off", this);
-//        		statusTag = 0;
-//        	}
-//        	else	{
-//        		lightButton = h.makeButton(lightId, "Switch on", this);
-//        		statusTag = 1;
-//        	}
-//        	LLLights.addView(lightButton);
+        	LLLights.removeView(lightButton);
+        	if (statusTag == 1)	{
+        		lightButton = h.makeButton(lightId, "Switch off", this);
+        		lightButton.setBackgroundColor(Color.GREEN);
+        		statusTag = 0;
+        	}
+        	else	{
+        		lightButton = h.makeButton(lightId, "Switch on", this);
+        		lightButton.setBackgroundColor(Color.RED);
+        		statusTag = 1;
+        	}
+        	LLLights.addView(lightButton);
         	
         	break;
         	
@@ -172,18 +176,20 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     	//clear old light button
 		LLLights.removeView(lightButton);
   
-//    	int status = sharedPrefs.getInt("status", 0);
-//		int mask = 1 << (addressArray.get(lightSpinnerPos) - 1);
-//   		if ((status & mask) != 0)	{
-//   			lightButton = h.makeButton(lightId, "Switch off", this);
-//   			statusTag	= 0;
-//   		} 
-//   		else	{
-//   			lightButton = h.makeButton(lightId, "Switch on", this);
-//   			statusTag 	= 1;
-//   		}
+    	int status = sharedPrefs.getInt("status", 0);
+		int mask = 1 << (addressArray.get(lightSpinnerPos) - 1);
+   		if ((status & mask) != 0)	{
+   			lightButton = h.makeButton(lightId, "Switch off", this);
+   			lightButton.setBackgroundColor(Color.GREEN);
+   			statusTag	= 0;
+   		} 
+   		else	{
+   			lightButton = h.makeButton(lightId, "Switch on", this);
+   			lightButton.setBackgroundColor(Color.RED);
+   			statusTag 	= 1;
+   		}
 		
-		lightButton = h.makeButton(lightId, LIGHTS_LBL, this);
+		//lightButton = h.makeButton(lightId, LIGHTS_LBL, this);
 		
 		LLLights.addView(lightButton);    	
     }

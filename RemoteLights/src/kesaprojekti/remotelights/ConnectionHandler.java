@@ -8,6 +8,10 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 import android.content.Context;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b493c71741941737d27c537c61b0453853754a0d
 
 public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
@@ -30,7 +34,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			@Override
 			public void run() {
 				
-				String serverName = "10.177.138.24";
+				String serverName = "10.240.147.159";
 			    int port = 4444;
 			    try
 			      {
@@ -40,7 +44,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         OutputStream outToServer = client.getOutputStream();
 			         DataOutputStream out =
 			                       new DataOutputStream(outToServer);
-			         out.writeInt(address);
+			         out.write((address + "\n").getBytes());
 
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =

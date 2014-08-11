@@ -7,24 +7,32 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ListActivity extends Activity implements OnItemClickListener {	
+public class ListActivity extends Activity implements OnItemClickListener, OnClickListener {	
+	
 	private ArrayList<Integer>		activeAddr;	
 	private ArrayList<String>		activeTargets;
 	private ArrayAdapter<String>	adapter;
+	private	Button					exitButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
 		
-		ListView lv = (ListView)findViewById(R.id.listView1);
+		exitButton = (Button)findViewById(R.id.exitButton);
+		exitButton.setOnClickListener(this);
 		
+		ListView lv = (ListView)findViewById(R.id.listView1);
+
 		SharedPreferences sharedPrefs		= PreferenceManager.getDefaultSharedPreferences(this);
         int status = sharedPrefs.getInt("status", 0);
 		
@@ -56,7 +64,7 @@ public class ListActivity extends Activity implements OnItemClickListener {
 		lv.setAdapter(adapter);
 		
 		lv.setOnItemClickListener(this);
-    	
+
 	}
 	
 	
@@ -70,11 +78,24 @@ public class ListActivity extends Activity implements OnItemClickListener {
     	ConnectionHandler thread = new ConnectionHandler(this);
     	thread.start(address);
 		
-		Toast.makeText(getApplicationContext(), item + " has been switched off.", Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), item + " has been switched off.", Toast.LENGTH_SHORT).show();
 		//remove item from display
 		activeTargets.remove(position);
 		activeAddr.remove(position);
 		adapter.notifyDataSetChanged();
+		
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId())
+		{
+		case R.id.exitButton:
+			finish();
+			break;
+			
+		}
 		
 	}
 }
