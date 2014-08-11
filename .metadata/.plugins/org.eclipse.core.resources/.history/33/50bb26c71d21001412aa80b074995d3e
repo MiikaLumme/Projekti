@@ -40,7 +40,7 @@ public class SelectLightsActivity extends Activity implements OnItemSelectedList
     private LinearLayout				LLExit;
     private SharedPreferences			sharedPrefs;
     private int 						persInfoTag = 0;
-    private char						statusTag = 0;
+    //private char						statusTag = 0;
     private int							lightSpinnerPos;
     private Helper 						h;
     

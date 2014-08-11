@@ -35,8 +35,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			    int port = 4444;
 			    try
 			      {
-			    	 byte[] buffer = null;	
-			    	 
+			    	
 			    	 Socket client = new Socket(serverName, port);
 
 			         OutputStream outToServer = client.getOutputStream();
@@ -47,7 +46,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
-			         int i = in.read(buffer);
+			         int i = in.re
 			         
 			         Helper h = new Helper();
 			         h.saveStatus(i, "status", context);

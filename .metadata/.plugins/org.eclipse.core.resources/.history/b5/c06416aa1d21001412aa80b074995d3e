@@ -8,7 +8,10 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 import android.content.Context;
+<<<<<<< HEAD
+=======
 
+>>>>>>> b493c71741941737d27c537c61b0453853754a0d
 
 public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
@@ -35,8 +38,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			    int port = 4444;
 			    try
 			      {
-			    	 byte[] buffer = null;	
-			    	 
+			    	
 			    	 Socket client = new Socket(serverName, port);
 
 			         OutputStream outToServer = client.getOutputStream();
@@ -47,7 +49,7 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
-			         int i = in.read(buffer);
+			         int i = in.readInt();
 			         
 			         Helper h = new Helper();
 			         h.saveStatus(i, "status", context);
