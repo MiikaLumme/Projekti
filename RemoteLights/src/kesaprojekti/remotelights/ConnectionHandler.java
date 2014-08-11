@@ -8,9 +8,6 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class ConnectionHandler extends Thread implements Runnable {
 	private int	address;
