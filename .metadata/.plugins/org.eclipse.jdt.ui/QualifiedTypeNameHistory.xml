@@ -39,4 +39,5 @@
 <fullyQualifiedTypeName name="android.net.wifi.WifiManager"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="kesaprojekti.remotelights.AlertDialogFragment"/>
+<fullyQualifiedTypeName name="android.support.v7.appcompat.R.integer"/>
 </qualifiedTypeNameHistroy>

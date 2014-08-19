@@ -8,6 +8,8 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 import android.content.Context;
+import android.support.v7.appcompat.R.integer;
+import android.widget.Toast;
 
 
 public class ConnectionHandler extends Thread implements Runnable {
@@ -35,7 +37,10 @@ public class ConnectionHandler extends Thread implements Runnable {
 			    int port = 4444;
 			    try
 			      {
-			    	
+			    	String string = "";
+			    	int i = 0;
+			    	 
+			    	 
 			    	 Socket client = new Socket(serverName, port);
 
 			         OutputStream outToServer = client.getOutputStream();
@@ -46,7 +51,24 @@ public class ConnectionHandler extends Thread implements Runnable {
 			         InputStream inFromServer = client.getInputStream();
 			         DataInputStream in =
 			                        new DataInputStream(inFromServer);
-			         int i = in.readInt();
+			         
+//			         if (in.available() != 0)	{
+//			        	 int recieved = 0;
+//			             recieved = in.read();
+//			            if(recieved != '\n'){
+//			              string += recieved;
+//			            }
+//			            if(recieved == '\n'){
+//			              i = Integer.parseInt(string);
+//			              Toast.makeText(context,
+//			                       i, Toast.LENGTH_LONG)
+//			                       .show();
+//			              string = "";          
+//			            }
+//			        	 
+//			         }
+			         
+			         
 			         
 			         Helper h = new Helper();
 			         h.saveStatus(i, "status", context);

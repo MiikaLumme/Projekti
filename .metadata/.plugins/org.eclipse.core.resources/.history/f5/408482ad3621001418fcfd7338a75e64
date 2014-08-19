@@ -43,13 +43,13 @@ public class ConnectionHandler extends Thread implements Runnable {
 			                       new DataOutputStream(outToServer);
 			         out.write((address + "\n").getBytes());
 
-			         InputStream inFromServer = client.getInputStream();
-			         DataInputStream in =
-			                        new DataInputStream(inFromServer);
-			         int i = in.readInt();
-			         
-			         Helper h = new Helper();
-			         h.saveStatus(i, "status", context);
+//			         InputStream inFromServer = client.getInputStream();
+//			         DataInputStream in =
+//			                        new DataInputStream(inFromServer);
+//			         int i = in.readInt();
+//			         
+//			         Helper h = new Helper();
+//			         h.saveStatus(i, "status", context);
 			         	         
 			         client.close();
 			         
